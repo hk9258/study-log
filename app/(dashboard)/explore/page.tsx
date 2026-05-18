@@ -34,7 +34,7 @@ export default function ExplorePage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-50">탐색</h1>
-        <p className="mt-1 text-zinc-500">학습 기록을 검색하고 탐색해보세요.</p>
+        <p className="mt-1 text-zinc-500">다른 사람들의 공개 학습 기록을 탐색해보세요.</p>
       </div>
 
       <div className="space-y-2">
@@ -88,7 +88,7 @@ export default function ExplorePage() {
       {!searched && (
         <div className="rounded-xl border border-dashed border-zinc-200 p-8 text-center dark:border-zinc-700">
           <p className="text-sm text-zinc-500">검색어를 입력하거나 태그를 지정해 탐색해보세요.</p>
-          <p className="mt-1 text-xs text-zinc-400">검색어 없이 검색하면 전체 기록을 볼 수 있습니다.</p>
+          <p className="mt-1 text-xs text-zinc-400">검색어 없이 검색하면 모든 공개 기록을 볼 수 있습니다.</p>
         </div>
       )}
     </div>

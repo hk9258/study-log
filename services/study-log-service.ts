@@ -26,6 +26,20 @@ export async function getStudyLog(
   return data;
 }
 
+export async function getStudyLogOrPublic(
+  id: string,
+  userId: string
+): Promise<StudyLog | null> {
+  const supabase = await createServerSupabaseClient();
+  const { data } = await supabase
+    .from("study_logs")
+    .select("*")
+    .eq("id", id)
+    .or(`user_id.eq.${userId},is_public.eq.true`)
+    .single();
+  return data;
+}
+
 export async function createStudyLog(
   userId: string,
   input: StudyLogInput

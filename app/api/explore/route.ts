@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   let query = supabase
     .from("study_logs")
     .select("*")
-    .eq("user_id", user.id)
+    .eq("is_public", true)
     .order("study_date", { ascending: false });
 
   if (q) {

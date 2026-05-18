@@ -13,13 +13,14 @@ export interface StudyLog {
   study_date: string;
   duration_minutes: number;
   tags: string[];
+  is_public: boolean;
   created_at: string;
   updated_at: string;
 }
 
 export type StudyLogInput = Pick<
   StudyLog,
-  "title" | "content" | "study_date" | "duration_minutes" | "tags"
+  "title" | "content" | "study_date" | "duration_minutes" | "tags" | "is_public"
 >;
 
 export type FeedbackType =

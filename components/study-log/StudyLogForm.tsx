@@ -18,6 +18,7 @@ export function StudyLogForm({ initial, onSubmit, onCancel, loading }: Props) {
     study_date: initial?.study_date ?? today,
     duration_minutes: initial?.duration_minutes ?? 0,
     tags: initial?.tags ?? [],
+    is_public: initial?.is_public ?? false,
   });
   const [tagInput, setTagInput] = useState("");
 
@@ -135,7 +136,25 @@ export function StudyLogForm({ initial, onSubmit, onCancel, loading }: Props) {
         )}
       </div>
 
-      <div className="flex justify-end gap-3 pt-2">
+      <div className="flex items-center justify-between pt-2">
+        <label className="flex cursor-pointer items-center gap-2.5">
+          <div
+            onClick={() => set("is_public", !form.is_public)}
+            className={`relative h-5 w-9 rounded-full transition-colors ${
+              form.is_public ? "bg-zinc-900 dark:bg-zinc-50" : "bg-zinc-200 dark:bg-zinc-700"
+            }`}
+          >
+            <span
+              className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-transform dark:bg-zinc-900 ${
+                form.is_public ? "translate-x-4" : "translate-x-0.5"
+              }`}
+            />
+          </div>
+          <span className="text-sm text-zinc-600 dark:text-zinc-400">
+            {form.is_public ? "공개" : "비공개"}
+          </span>
+        </label>
+        <div className="flex gap-3">
         <button
           type="button"
           onClick={onCancel}
@@ -150,6 +169,7 @@ export function StudyLogForm({ initial, onSubmit, onCancel, loading }: Props) {
         >
           {loading ? "저장 중..." : initial ? "수정하기" : "저장하기"}
         </button>
+        </div>
       </div>
     </form>
   );

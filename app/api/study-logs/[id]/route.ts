@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthUser } from "@/lib/supabase-server";
 import {
-  getStudyLog,
+  getStudyLogOrPublic,
   updateStudyLog,
   deleteStudyLog,
 } from "@/services/study-log-service";
@@ -14,7 +14,7 @@ export async function GET(
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { id } = await params;
-  const log = await getStudyLog(id, user.id);
+  const log = await getStudyLogOrPublic(id, user.id);
   if (!log) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json({ data: log });
 }

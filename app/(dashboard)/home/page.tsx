@@ -32,8 +32,8 @@ export default function HomePage() {
 
       {stats && (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          <StatCard label="총 학습 기록" value={`${stats.total_logs}개`} />
-          <StatCard label="총 학습 시간" value={formatDuration(stats.total_minutes)} />
+          <StatCard label="총 학습 기록" value={`${stats.total_logs}개`} accent="indigo" />
+          <StatCard label="총 학습 시간" value={formatDuration(stats.total_minutes)} accent="violet" />
           <StatCard label="이번 주 기록" value={`${stats.weekly_logs}개`} />
           <StatCard label="이번 달 학습" value={formatDuration(stats.monthly_minutes)} />
         </div>
@@ -76,11 +76,20 @@ export default function HomePage() {
   );
 }
 
-function StatCard({ label, value }: { label: string; value: string }) {
+function StatCard({ label, value, accent }: { label: string; value: string; accent?: "indigo" | "violet" }) {
+  const gradients = {
+    indigo: "bg-gradient-to-br from-indigo-50 to-blue-50 border-indigo-100 dark:from-indigo-950/30 dark:to-blue-950/30 dark:border-indigo-900/30",
+    violet: "bg-gradient-to-br from-violet-50 to-purple-50 border-violet-100 dark:from-violet-950/30 dark:to-purple-950/30 dark:border-violet-900/30",
+  };
+  const textColors = {
+    indigo: "text-indigo-700 dark:text-indigo-300",
+    violet: "text-violet-700 dark:text-violet-300",
+  };
+
   return (
-    <div className="rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
+    <div className={`rounded-xl border p-4 ${accent ? gradients[accent] : "border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"}`}>
       <p className="text-xs text-zinc-500">{label}</p>
-      <p className="mt-1 text-xl font-semibold text-zinc-900 dark:text-zinc-50">
+      <p className={`mt-1 text-xl font-semibold ${accent ? textColors[accent] : "text-zinc-900 dark:text-zinc-50"}`}>
         {value}
       </p>
     </div>

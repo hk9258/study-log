@@ -45,7 +45,7 @@ export function FeedbackPanel({ studyLogId }: { studyLogId: string }) {
         <button
           onClick={handleGenerate}
           disabled={streaming}
-          className="rounded-full bg-zinc-900 px-4 py-1.5 text-xs font-medium text-white hover:bg-zinc-700 disabled:opacity-50 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+          className="rounded-full bg-gradient-to-r from-indigo-600 to-violet-600 px-4 py-1.5 text-xs font-medium text-white shadow-sm transition-all hover:from-indigo-500 hover:to-violet-500 hover:shadow-md disabled:opacity-50"
         >
           {streaming ? "생성 중..." : feedback ? "재생성" : "AI 피드백 받기"}
         </button>
@@ -92,6 +92,7 @@ export function FeedbackPanel({ studyLogId }: { studyLogId: string }) {
               ) : (
                 <FeedbackItem
                   key={type}
+                  type={type}
                   label={FEEDBACK_LABELS[type]}
                   content={display[type]}
                 />

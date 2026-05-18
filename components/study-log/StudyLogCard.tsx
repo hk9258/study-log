@@ -5,10 +5,10 @@ import type { StudyLog } from "@/types";
 export function StudyLogCard({ log }: { log: StudyLog }) {
   return (
     <Link href={`/logs/${log.id}`}>
-      <div className="rounded-xl border border-zinc-200 bg-white p-5 transition-colors hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-700">
+      <div className="group rounded-xl border border-zinc-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-700">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-2">
-            <h3 className="font-medium text-zinc-900 dark:text-zinc-50">
+            <h3 className="font-medium text-zinc-900 transition-colors group-hover:text-indigo-600 dark:text-zinc-50 dark:group-hover:text-indigo-400">
               {log.title}
             </h3>
             {log.is_public && (

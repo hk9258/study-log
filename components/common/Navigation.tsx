@@ -15,21 +15,26 @@ export function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+    <nav className="sticky top-0 z-50 border-b border-zinc-200/80 bg-white/80 backdrop-blur-xl dark:border-zinc-800/80 dark:bg-zinc-950/80">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         <div className="flex items-center gap-6">
-          <span className="font-semibold text-zinc-900 dark:text-zinc-50">
-            Study Log
-          </span>
-          <div className="flex gap-4">
+          <Link href="/home" className="flex items-center gap-2">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-600 to-violet-600 text-xs font-bold text-white shadow-sm">
+              S
+            </span>
+            <span className="font-semibold text-zinc-900 dark:text-zinc-50">
+              Study Log
+            </span>
+          </Link>
+          <div className="flex gap-1">
             {NAV_LINKS.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className={`text-sm transition-colors ${
+                className={`rounded-full px-3 py-1.5 text-sm transition-all ${
                   pathname === href
-                    ? "font-medium text-zinc-900 dark:text-zinc-50"
-                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50"
+                    ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50"
+                    : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
                 }`}
               >
                 {label}
@@ -37,24 +42,23 @@ export function Navigation() {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <Link
             href="/profile"
-            className={`flex items-center gap-2 text-sm transition-colors ${
+            className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-sm transition-all ${
               pathname === "/profile"
-                ? "font-medium text-zinc-900 dark:text-zinc-50"
-                : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50"
+                ? "bg-zinc-100 font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50"
+                : "text-zinc-500 hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
             }`}
           >
             {user?.avatar_url ? (
-              <img src={user.avatar_url} alt="" className="h-7 w-7 rounded-full" />
-            ) : (
-              <span>마이페이지</span>
-            )}
+              <img src={user.avatar_url} alt="" className="h-6 w-6 rounded-full" />
+            ) : null}
+            <span>마이페이지</span>
           </Link>
           <button
             onClick={signOut}
-            className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:hover:text-zinc-50"
+            className="rounded-full px-3 py-1.5 text-sm text-zinc-500 transition-all hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-50"
           >
             로그아웃
           </button>

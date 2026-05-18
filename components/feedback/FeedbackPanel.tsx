@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useFeedback } from "@/hooks/useFeedback";
 import { useFeedbackStream } from "@/hooks/useFeedbackStream";
 import { FeedbackItem } from "./FeedbackItem";
+import { FeedbackTodos } from "./FeedbackTodos";
 import { FEEDBACK_LABELS, FEEDBACK_TYPES } from "@/constants";
 import type { Feedback, FeedbackType } from "@/types";
 
 export function FeedbackPanel({ studyLogId }: { studyLogId: string }) {
-  const { feedback, versions, loading, setFeedback, rate, refetch } = useFeedback(studyLogId);
+  const { feedback, versions, loading, rate, refetch } = useFeedback(studyLogId);
   const { streaming, streamedFeedback, error, startStream } = useFeedbackStream(studyLogId);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -85,13 +86,17 @@ export function FeedbackPanel({ studyLogId }: { studyLogId: string }) {
       {Object.keys(display).length > 0 ? (
         <>
           <div className="space-y-3">
-            {FEEDBACK_TYPES.map((type) => (
-              <FeedbackItem
-                key={type}
-                label={FEEDBACK_LABELS[type]}
-                content={display[type]}
-              />
-            ))}
+            {FEEDBACK_TYPES.map((type) =>
+              type === "todos" ? (
+                <FeedbackTodos key={type} content={display[type]} />
+              ) : (
+                <FeedbackItem
+                  key={type}
+                  label={FEEDBACK_LABELS[type]}
+                  content={display[type]}
+                />
+              )
+            )}
           </div>
 
           {selectedFeedback && !streaming && (

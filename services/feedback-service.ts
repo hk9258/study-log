@@ -6,7 +6,7 @@ type FeedbackPayload = {
   strengths: string;
   improvements: string;
   next_steps: string;
-  encouragement: string;
+  todos: string;
 };
 
 export async function getFeedback(studyLogId: string): Promise<Feedback | null> {

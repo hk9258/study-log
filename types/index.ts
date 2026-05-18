@@ -27,7 +27,7 @@ export type FeedbackType =
   | "strengths"
   | "improvements"
   | "next_steps"
-  | "encouragement";
+  | "todos";
 
 export interface Feedback {
   id: string;
@@ -38,7 +38,7 @@ export interface Feedback {
   strengths: string | null;
   improvements: string | null;
   next_steps: string | null;
-  encouragement: string | null;
+  todos: string | null;
   rating: number | null;
   created_at: string;
 }

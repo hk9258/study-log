@@ -10,7 +10,7 @@ const SYSTEM_PROMPT = `당신은 학습 코치입니다. 학습 회고 내용을
   "strengths": "잘한 점과 긍정적인 부분",
   "improvements": "개선할 수 있는 부분",
   "next_steps": "다음 학습 방향 제안",
-  "encouragement": "격려와 응원 메시지"
+  "todos": "다음 학습을 위한 구체적인 실천 항목 3~5개. 반드시 줄바꿈(\\n)으로 구분하고 각 항목은 '- '로 시작하세요. 예: '- React 공식문서 Hooks 챕터 읽기\\n- useState 커스텀 훅 직접 만들어보기'"
 }`;
 
 const config = {
@@ -33,7 +33,7 @@ export async function generateFeedback(title: string, content: string) {
     strengths: string;
     improvements: string;
     next_steps: string;
-    encouragement: string;
+    todos: string;
   };
 }
 
